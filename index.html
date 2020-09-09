@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Printing Labels with b-Pac 🖨</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/ico" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <script type="module">
+        import * as bpac from '/assets/js/bpac.js';
+
+        const MODEL_FILE = "C:\\Users\\mp182\\Desktop\\label.lbx";
+        window.Print = async function DoPrint() {
+            if (bpac.IsExtensionInstalled() == false) {
+                const agent = window.navigator.userAgent.toLowerCase();
+                const ischrome = (agent.indexOf('chrome') !== -1) && (agent.indexOf('edge') === -1) && (agent.indexOf('opr') === -1)
+                if (ischrome) {
+                    window.alert('You need the b-Pac extension, in the next window you can install it.');
+                    window.open('https://chrome.google.com/webstore/detail/ilpghlfadkjifilabejhhijpfphfcfhb', '_blank');
+                }
+                else {
+                    window.alert('This feature is only enabled for Google Chrome.');
+                }
+                return;
+            } else {
+                const bPacDoc = bpac.IDocument;
+                const modelFileExist = await bPacDoc.Open(MODEL_FILE);
+                if (modelFileExist != false) {
+                    try {
+                        const form = document.getElementById("bpacForm");
+                        const productName = await bPacDoc.GetObject("productName");
+                        const qrCode = await bPacDoc.GetObject("qrCode");
+                        productName.Text = form.product.value;
+                        qrCode.Text = "https://www.google.com/search?q=" + form.product.value;
+                        bPacDoc.StartPrint("", 0);
+                        bPacDoc.PrintOut(1, 0);
+                        bPacDoc.EndPrint();
+                        bPacDoc.Close();
+                    }
+                    catch (e) {
+                        console.log(e);
+                        window.alert('Unable to print the label, try again later.');
+                    }
+                } else {
+                    window.alert('The model file of the label is not accessible.');
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Printing Labels with b-Pac 🖨</h1>
+    <div>
+        <form id="bpacForm" action="javascript:Print();">
+            <label>Product: </label>
+            <input type="text" id="product" name="product" value="" maxlength="10" required>
+            <button type="submit">Print 🖨</button>
+        </form>
+    </div>
+</body>
+
+</html>

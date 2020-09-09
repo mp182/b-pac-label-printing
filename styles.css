@@ -1,0 +1,13 @@
+body {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 16px;
+}
+
+label {
+  width: 150px;
+  text-align: right;
+}
+
