@@ -19,12 +19,21 @@ Before you begin, ensure you have met the following requirements:
 
 - Replace the path MODEL_FILE with one of your preference. Keep in mind you need Admin access to that path.
 
-` const MODEL_FILE = "C:\\Users\\user\\Desktop\\label.lbx";
-`
+```javascript
+ const MODEL_FILE = "C:\\Users\\user\\Desktop\\label.lbx";
+```
 
 - After that, you can take label.lbx file from *assets/label/label.lbx* and copy to the previous path.
 
-## Related Docs
+## A few things to consider 👈
+
+Beyond the code, there are some points to be taken into account regarding the printer itself.
+
+- Make sure the Editor Lite light on the printer is OFF by holding down the button for a few seconds.
+
+- Check the size and type of the paper, either in P-Touch editor and printer settings. Both have to match.
+
+## Related Docs 📃
 
 To develop this example I read and copy-pasted some code from:
 
