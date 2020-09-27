@@ -1,3 +1,6 @@
+> En español click acá -> [Readme 🇪🇸](readme-ES.md)
+---
+  
 # Printing labels with b-PAC 🖨
 
 This is an example of how to print a label with a [QR Code](https://en.wikipedia.org/wiki/QR_code) with [b-PAC](https://www.brother.co.jp/eng/dev/bpac/index.aspx).
